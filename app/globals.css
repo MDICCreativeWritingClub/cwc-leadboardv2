@@ -1,0 +1,345 @@
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+@keyframes vote-pulse {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+.animate-vote-pulse {
+  animation: vote-pulse 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes fade-slide-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-slide-in {
+  animation: fade-slide-in 0.5s ease both;
+}
+
+:root {
+  --font-serif: "Fraunces", "Georgia", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-size: 18px;
+  --background: #fafafa;
+  --foreground: #0f2818;
+  --card: #ffffff;
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: #030213;
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.0058 264.53);
+  --secondary-foreground: #030213;
+  --muted: #ececf0;
+  --muted-foreground: #717182;
+  --accent: #e9ebef;
+  --accent-foreground: #030213;
+  --destructive: #d4183d;
+  --destructive-foreground: #ffffff;
+  --border: rgba(0, 0, 0, 0.1);
+  --input: transparent;
+  --input-background: #f3f3f5;
+  --switch-background: #cbced4;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: #030213;
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+
+  /* --- Design-token palette (see lib/theme.ts) ---
+     These mirror the light-mode hex values already used across the app.
+     Overridden per-token in .dark below so every component that reads
+     from lib/theme.ts adapts to dark mode automatically. */
+  --token-white: #ffffff;
+  --token-neutral50: #fafafa;
+
+  --token-gray50: #f9fafb;
+  --token-gray100: #f3f4f6;
+  --token-gray200: #e5e7eb;
+  --token-gray300: #d1d5db;
+  --token-gray400: #9ca3af;
+  --token-gray500: #6b7280;
+  --token-gray600: #4b5563;
+  --token-gray700: #374151;
+  --token-gray800: #1f2937;
+  --token-gray900: #111827;
+
+  --token-red50: #fef2f2;
+  --token-red100: #fee2e2;
+  --token-red200: #fecaca;
+  --token-red300: #fca5a5;
+  --token-red600: #dc2626;
+  --token-red700: #b91c1c;
+  --token-red800: #991b1b;
+
+  --token-amber200: #fde68a;
+  --token-amber600: #d97706;
+  --token-amber700: #b45309;
+  --token-amber800: #92400e;
+  --token-amber900: #78350f;
+  --token-amber900Deep: #713f12;
+
+  --token-yellow50: #fefce8;
+  --token-yellow100: #fef9c3;
+  --token-yellow300: #fde047;
+  --token-yellow400: #fbbf24;
+  --token-yellow600: #ca8a04;
+
+  --token-violet50: #f5f3ff;
+  --token-violet200: #ddd6fe;
+  --token-violet700: #6d28d9;
+
+  --token-emerald100: #d1fae5;
+
+  /* Chrome (navbar/footer) — pure black in light mode, unchanged. */
+  --token-chrome: #000000;
+
+  /* Soft badge/chip surface (was green50/green100 + green600/700 text +
+     green200 border, hardcoded). Light values match the old hardcoded
+     hex exactly so light mode is unchanged. */
+  --token-badgeBg: #f0fdf4;
+  --token-badgeBgStrong: #dcfce7;
+  --token-badgeText: #15803d;
+  --token-badgeBorder: #bbf7d0;
+
+  /* Heading/label text on a card or page surface (was a flat green900). */
+  --token-heading: #14532d;
+}
+
+/* Smooth, flash-free theme transition for the page chrome. Component-level
+   hover/press animations keep their own transition-* utility classes. */
+html,
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dark {
+  /* Deep forest charcoal — not pure black. Warm off-white text, not pure white. */
+  --background: #0f1d15;
+  --foreground: #edf2ea;
+  --card: #16261c;
+  --card-foreground: #edf2ea;
+  --popover: #182819;
+  --popover-foreground: #edf2ea;
+  --primary: #3fae6f;
+  --primary-foreground: #0c1a10;
+  --secondary: #1f3527;
+  --secondary-foreground: #edf2ea;
+  --muted: #1a2a20;
+  --muted-foreground: #a4bcac;
+  --accent: #21402d;
+  --accent-foreground: #eaf7ee;
+  --destructive: #7a2f2f;
+  --destructive-foreground: #f7dcdc;
+  --border: rgba(237, 242, 234, 0.1);
+  --input: #1c2e22;
+  --input-background: #1a2a20;
+  --switch-background: #33503f;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --ring: #3fae6f;
+  --chart-1: #4ade80;
+  --chart-2: #34d399;
+  --chart-3: #f2b84b;
+  --chart-4: #e08b8b;
+  --chart-5: #b79bf0;
+  --sidebar: #16261c;
+  --sidebar-foreground: #edf2ea;
+  --sidebar-primary: #3fae6f;
+  --sidebar-primary-foreground: #0c1a10;
+  --sidebar-accent: #1f3527;
+  --sidebar-accent-foreground: #edf2ea;
+  --sidebar-border: rgba(237, 242, 234, 0.1);
+  --sidebar-ring: #3fae6f;
+
+  /* --- Design-token palette overrides (see lib/theme.ts) ---
+     Light values live in :root below; these are the dark-mode
+     equivalents so every component that reads from lib/theme.ts
+     automatically adapts without per-component edits. */
+  --token-white: #16261c;
+  --token-neutral50: #182a1e;
+
+  --token-gray50: #1a2c20;
+  --token-gray100: #203526;
+  --token-gray200: #2c452f;
+  --token-gray300: #3c5a41;
+  --token-gray400: #93ab98;
+  --token-gray500: #a9c0ae;
+  --token-gray600: #c1d3c4;
+  --token-gray700: #dae6db;
+  --token-gray800: #e9f1e9;
+  --token-gray900: #f4f8f3;
+
+  --token-red50: #34191b;
+  --token-red100: #3f1f21;
+  --token-red200: #522a2b;
+  --token-red300: #e5a3a3;
+  --token-red600: #f0716e;
+  --token-red700: #f4a3a1;
+  --token-red800: #f8c6c4;
+
+  --token-amber200: #6b5228;
+  --token-amber600: #f0b34c;
+  --token-amber700: #f4c477;
+  --token-amber800: #e7b877;
+  --token-amber900: #f2d9ab;
+  --token-amber900Deep: #f2d9ab;
+
+  --token-yellow50: #332c17;
+  --token-yellow100: #3d341c;
+  --token-yellow300: #e8cf60;
+  --token-yellow400: #eecb55;
+  --token-yellow600: #e3bd52;
+
+  --token-violet50: #241f38;
+  --token-violet200: #4a4072;
+  --token-violet700: #b79bf0;
+
+  --token-emerald100: #17392a;
+
+  /* Chrome (navbar/footer) — a distinct dark surface, richer than the
+     page background, so the navbar reads as part of the same design
+     instead of an unrelated pure-black bar. */
+  --token-chrome: #132318;
+
+  /* Soft badge/chip surface — muted dark green bg with a bright, legible
+     green for the accompanying text, instead of staying pale/cream. */
+  --token-badgeBg: #1a2f22;
+  --token-badgeBgStrong: #204028;
+  --token-badgeText: #7fd8a4;
+  --token-badgeBorder: rgba(127, 216, 164, 0.28);
+
+  /* Heading/label text — warm cream instead of a near-invisible dark
+     green on a dark surface. */
+  --token-heading: #f1f5ee;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    background-color: var(--background);
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    background-color: var(--background);
+  }
+
+  html {
+    font-size: var(--font-size);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-serif);
+  }
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  input {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+  }
+}

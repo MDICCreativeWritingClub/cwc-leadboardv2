@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Outer circle -->
+  <circle cx="100" cy="100" r="98" fill="#0d6b3d" stroke="#ffffff" stroke-width="3"/>
+  
+  <!-- Inner white circle -->
+  <circle cx="100" cy="100" r="85" fill="#ffffff"/>
+  
+  <!-- Green border ring -->
+  <circle cx="100" cy="100" r="85" fill="none" stroke="#0d6b3d" stroke-width="8"/>
+  
+  <!-- Top text arc - KNOWLEDGE * MORALITY * EXCELLENCE -->
+  <path id="topArc" d="M 30,100 a 70,70 0 0,1 140,0" fill="none"/>
+  <text font-size="10" fill="#0d6b3d" font-weight="bold" letter-spacing="2">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">KNOWLEDGE * MORALITY * EXCELLENCE</textPath>
+  </text>
+  
+  <!-- Bottom text arc - MANARAT DHAKA INTERNATIONAL SCHOOL & COLLEGE -->
+  <path id="bottomArc" d="M 30,100 a 70,70 0 0,0 140,0" fill="none"/>
+  <text font-size="7.5" fill="#0d6b3d" font-weight="bold" letter-spacing="1">
+    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">MANARAT DHAKA INTERNATIONAL SCHOOL &amp; COLLEGE</textPath>
+  </text>
+  
+  <!-- Central emblem background -->
+  <circle cx="100" cy="95" r="35" fill="#0d6b3d"/>
+  
+  <!-- Mosque/dome silhouette -->
+  <path d="M 80,110 L 80,85 Q 100,65 120,85 L 120,110 Z" fill="#ffffff"/>
+  <circle cx="100" cy="75" r="5" fill="#ffffff"/>
+  
+  <!-- Minaret towers -->
+  <rect x="72" y="80" width="6" height="30" fill="#ffffff"/>
+  <rect x="122" y="80" width="6" height="30" fill="#ffffff"/>
+  <circle cx="75" cy="78" r="4" fill="#ffffff"/>
+  <circle cx="125" cy="78" r="4" fill="#ffffff"/>
+  
+  <!-- Arabic calligraphy hint (simplified) -->
+  <text x="100" y="100" text-anchor="middle" font-size="14" fill="#0d6b3d" font-weight="bold">منarat</text>
+  
+  <!-- Manarat, Dhaka text -->
+  <text x="100" y="120" text-anchor="middle" font-size="9" fill="#0d6b3d" font-weight="bold">Manarat, Dhaka</text>
+  
+  <!-- Since 1979 -->
+  <text x="100" y="135" text-anchor="middle" font-size="8" fill="#0d6b3d">Since 1979</text>
+  
+  <!-- Stars -->
+  <polygon points="55,55 57,61 63,61 58,65 60,71 55,67 50,71 52,65 47,61 53,61" fill="#0d6b3d"/>
+  <polygon points="145,55 147,61 153,61 148,65 150,71 145,67 140,71 142,65 137,61 143,61" fill="#0d6b3d"/>
+</svg>
